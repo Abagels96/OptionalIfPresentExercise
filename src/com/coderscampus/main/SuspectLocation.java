@@ -4,7 +4,11 @@ public class SuspectLocation {
 	String name;
 	String country;
 	
-	 public SuspectLocation(String name, String country) {
+	 @Override
+	public String toString() {
+		return "SuspectLocation [name=" + name + ", country=" + country + "]";
+	}
+	public SuspectLocation(String name, String country) {
 		 this.name=name;
 		 this.country=country;
 	 }

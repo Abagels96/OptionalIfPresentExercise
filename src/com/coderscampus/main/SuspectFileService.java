@@ -8,32 +8,30 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class SuspectFileService {
-ArrayList firstFile= new ArrayList();
-String[] firstFile1= new String[24];
+String[] firstFile1= new String[22];
+Object[] theFirstTry= new Object[22];
 	public void readFile(String fileName) {
 		int z=0;
 	try {
 		BufferedReader reader= new BufferedReader(new FileReader("src/InterpolWatchReport-Week1.csv"));
-		
+		reader.readLine();
 		String lines= "";
 		while((lines=reader.readLine()) !=null) {
 		System.out.println(lines);	
 		firstFile1=	lines.split(",");
 		System.out.println(Arrays.toString(firstFile1));
+		SuspectLocation suspect= new SuspectLocation(firstFile1[1], firstFile1[0]);
+		System.out.println(suspect.toString());
+		
+		
+		theFirstTry[z]= suspect;
+		z++;
+		
+		
 		}
-	SuspectLocation suspect= new SuspectLocation(firstFile1[1], firstFile1[0]);
 	
-	for(int i=0; i<firstFile1.length;i++) {
-	firstFile.add(suspect);
-	
-	}
-	
-	for (int q=0; q<firstFile.size(); q++) {
-	System.out.println(firstFile.get(q));
-	}
-	;
-	
-	
+ArrayList<Object> holdingPattern= new ArrayList<>(Arrays.asList(theFirstTry));
+//holdingPattern.stream().filter(name-> name)
 	
 		
 	} catch (FileNotFoundException e) {
@@ -45,6 +43,7 @@ String[] firstFile1= new String[24];
 	}
 	
 	}
+	//merge all of the methods
 
 	public void readFile2(String fileName2) throws IOException {
 		BufferedReader reader2= null;
