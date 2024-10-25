@@ -6,14 +6,20 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class SuspectFileService {
 String[] firstFile1= new String[22];
 Object[] theFirstTry= new Object[22];
-	public void readFile(String fileName) {
-		int z=0;
+ArrayList<SuspectLocation> intermediateStep= new ArrayList<SuspectLocation>();
+SuspectLocation suspect= new SuspectLocation();
+	public Object readFile(String fileName) {
 	try {
-		BufferedReader reader= new BufferedReader(new FileReader("src/InterpolWatchReport-Week1.csv"));
+		
+		
+		BufferedReader reader= new BufferedReader(new FileReader(fileName));
 		reader.readLine();
 		String lines= "";
 		while((lines=reader.readLine()) !=null) {
@@ -23,15 +29,25 @@ Object[] theFirstTry= new Object[22];
 		SuspectLocation suspect= new SuspectLocation(firstFile1[1], firstFile1[0]);
 		System.out.println(suspect.toString());
 		
-		
-		theFirstTry[z]= suspect;
-		z++;
-		
-		
+		intermediateStep.add(suspect);
+//		theFirstTry[z]= suspect;
+//		z++;
+//		
+//		return suspect;
 		}
-	
-ArrayList<Object> holdingPattern= new ArrayList<>(Arrays.asList(theFirstTry));
-//holdingPattern.stream().filter(name-> name)
+		SuspectLocation suspect= new SuspectLocation(firstFile1[1], firstFile1[0]);
+		System.out.println(suspect.getName());
+//ArrayList<SuspectLocation> holdingPattern= new ArrayList<>(Arrays.asList(theFirstTry));
+for(Object step:intermediateStep){
+	System.out.println(step);
+}
+Optional<SuspectLocation> end= intermediateStep.stream()
+                            .filter(p->p.name.equals("CARMEN SANDIEGO"))
+                               .findAny();
+                               end.ifPresent(p-> { String country= p.getCountry();
+                               System.out.println("Carmen Sandiego was found in  "+ country);});
+//System.out.println(end);
+
 	
 		
 	} catch (FileNotFoundException e) {
@@ -41,7 +57,7 @@ ArrayList<Object> holdingPattern= new ArrayList<>(Arrays.asList(theFirstTry));
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	
+	return suspect;
 	}
 	//merge all of the methods
 
