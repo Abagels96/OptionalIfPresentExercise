@@ -6,7 +6,7 @@ public class SuspectApplication {
 public static void main (String []args) throws IOException {
 	SuspectFileService service= new SuspectFileService();
 	
-	String [] filePaths={"InterpolWatchReport-Week1.csv","InterpolWatchReport-Week2.csv","InterpolWatchReport-Week2.csv"};
+	String [] filePaths={"src/InterpolWatchReport-Week1.csv","src/InterpolWatchReport-Week2.csv","src/InterpolWatchReport-Week2.csv"};
 	
 	for(String paths:filePaths) {
 		

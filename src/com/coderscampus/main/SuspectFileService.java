@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 
 public class SuspectFileService {
 String[] firstFile1= new String[22];
-Object[] theFirstTry= new Object[22];
 ArrayList<SuspectLocation> intermediateStep= new ArrayList<SuspectLocation>();
 SuspectLocation suspect= new SuspectLocation();
 	public Object readFile(String fileName) {
